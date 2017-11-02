@@ -1,0 +1,1 @@
+cmd = HomerBedFileQuille.bed mm9 . -size 200 -len 6,8,10
