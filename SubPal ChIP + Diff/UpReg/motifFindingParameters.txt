@@ -1,0 +1,1 @@
+cmd = ListGenesUp mouse . -start -1000 -end 200 -p 6
