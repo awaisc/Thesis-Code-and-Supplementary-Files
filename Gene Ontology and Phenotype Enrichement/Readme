@@ -1,0 +1,12 @@
+In this folder is the following files
+
+MGI (Mammailian genome phenotype Enrichement) Results for both human and mouse genes that were predicted targets of ARX/Arx
+GO (GO Bioloigcal processes Enrichement Results) Results for both human and mouse genes that were predicted targets of ARX/Arx
+
+
+For each genome, the enrichement results are divided into 2 seperate lists, one list is the nehancer targets and the other is the Promoter targets
+
+
+eg: GO HumanEnhancerTargets.txt: Gene ontology results for genes that were predicted to be targets of ARX TFBS in Enhancer regions in the human genome
+
+ MousePromotersARX.txt : Mammalian genome phenotype enrichement results for genes that were predicted to be targets of Arx TFBS in enhancer regions in the mouse genome
