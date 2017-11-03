@@ -1,4 +1,30 @@
 
+
+
+
+
+
+## Install all packages needed if packages not installed!!!!
+list.of.packages <- c("shiny", "shinycssloaders",
+                      "shinydashboard", 
+                      "gridExtra", 
+                      "Gviz",  
+                      "GenomicInteractions",
+                      "rtracklayer", 
+                      "magrittr",
+                      "parallel", 
+                      "TxDb.Hsapiens.UCSC.hg19.knownGene",
+                      "TxDb.Mmusculus.UCSC.mm9.knownGene",
+                      "org.Hs.eg.db",
+                      "org.Mm.eg.db")
+
+new.packages <- list.of.packages[!(list.of.packages %in% installed.packages()[,"Package"])]
+## try http:// if https:// URLs are not supported
+source("https://bioconductor.org/biocLite.R")
+if(length(new.packages)) BiocInstaller::biocLite(new.packages)
+
+
+
 library(shiny)
 library(shinycssloaders)
 library(shinydashboard)
@@ -10,7 +36,6 @@ dashboardPage(
   dashboardSidebar(
     numericInput("fromM", "Starting Base",value = 25016813),
     numericInput("toM", "Finishing Base", value = 25038065),
-    numericInput("counts", "Contact Probability", value = 1),
     selectInput("chrM", label = h3("Select box"), 
                 choices = list("Chromosome 1" = "chr1",
                                "Chromosome 2" = "chr2", 

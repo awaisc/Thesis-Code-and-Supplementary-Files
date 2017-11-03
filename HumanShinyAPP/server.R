@@ -10,7 +10,6 @@
 library(shiny)
 library(gridExtra)
 library(Gviz)
-library(coMET)
 library(GenomicInteractions)
 library(rtracklayer)
 library(magrittr)
@@ -46,12 +45,12 @@ if(!exists("chrM")){
   #######################################
   
   ## Human ChormHMM Tracks
-  Pancreas="~/DataFiles/ChromHMM/human/coMET/E098_15_coreMarks_mnemonics.bed.gz"%>%import()
-  PancreasIslets="~/DataFiles/ChromHMM/human/coMET/E093_15_coreMarks_mnemonics.bed.gz"%>%import()
-  fetalBrainFemale="~/DataFiles/ChromHMM/human/coMET/E082_15_coreMarks_mnemonics.bed.gz"%>%import()
-  fetalBrainMale="~/DataFiles/ChromHMM/human/coMET/E081_15_coreMarks_mnemonics.bed.gz"%>%import()
-  H9NeuronCells="~/DataFiles/ChromHMM/human/coMET/E010_15_coreMarks_mnemonics.bed.gz"%>%import()
-  H9NeuronProgenitorCells="~/DataFiles/ChromHMM/human/coMET/E009_15_coreMarks_mnemonics.bed.gz"%>%import()
+  Pancreas="DataFiles/ChromHMM/human/coMET/E098_15_coreMarks_mnemonics.bed.gz"%>%import()
+  PancreasIslets="DataFiles/ChromHMM/human/coMET/E093_15_coreMarks_mnemonics.bed.gz"%>%import()
+  fetalBrainFemale="DataFiles/ChromHMM/human/coMET/E082_15_coreMarks_mnemonics.bed.gz"%>%import()
+  fetalBrainMale="DataFiles/ChromHMM/human/coMET/E081_15_coreMarks_mnemonics.bed.gz"%>%import()
+  H9NeuronCells="DataFiles/ChromHMM/human/coMET/E010_15_coreMarks_mnemonics.bed.gz"%>%import()
+  H9NeuronProgenitorCells="DataFiles/ChromHMM/human/coMET/E009_15_coreMarks_mnemonics.bed.gz"%>%import()
   
   
   assign("Pancreas", Pancreas, .GlobalEnv)
@@ -63,36 +62,56 @@ if(!exists("chrM")){
   
   
   #Enhancers
-  EnhancersHuman<-import("~/DataFiles/Enhancer Tracks/Human/human_permissive_enhancers_phase_1_and_2.bed")
+  EnhancersHuman<-import("DataFiles/Enhancers Track/Human/human_permissive_enhancers_phase_1_and_2.bed.gz")
   
-  #Predicted Arx Motif Track!!!! 
-arx6MerTFBSHg19<-readRDS("~/DataFiles/ChIPseq/Human/ARX6merHg19Sites")
-  ARXMotifModels<-readRDS("~/DataFiles/ChIPseq/Human/PredictedARXTFBS")
+  #All Arx Motif Track!!!! 
+  arx6MerTFBSHg19<-readRDS("DataFiles/ChIPseq/Human/ARX6merHg19Sites")
+  mcols(arx6MerTFBSHg19)<-cbind.data.frame("Model"= "6mer")
+  ArxP6mer4Human<-readRDS("DataFiles/ChIPseq/Human/Plaindromic4SpacedTFBS")
+  mcols(ArxP6mer4Human)<-cbind.data.frame("Model"= "P6mer4")
+  ArxJolmaHuman<-readRDS("DataFiles/ChIPseq/Human/JolmaTFBS")
+  mcols(ArxJolmaHuman)<-cbind.data.frame("Model"= "Jolma")
+  ArxT6mer2Human<-readRDS("DataFiles/ChIPseq/Human/ARXTande2SpacedSites")
+  mcols(ArxT6mer2Human)<-cbind.data.frame("Model"= "T6mer2")
   
-  ARXEnhancerMotifs<-ARXMotifModels%>%AnnotationTrack(genome = "hg19", stacking = "dense", strand= "*",
-                                                           col.line="black", feature= (mcols(ARXMotifModels))$model,
+  ## See latter down for impletation of this track
+  arxMotifsHumanRaw<-c(arx6MerTFBSHg19,
+                       ArxP6mer4Human,
+                       ArxJolmaHuman,
+                       ArxT6mer2Human)%>%unlist()
+  ### Predicted TFBS
+  ARXMotifModels<-readRDS("DataFiles/ChIPseq/Human/PredictedARXTFBS")
+  
+  
+  ARXEnhancerMotifs<-ARXMotifModels%>%AnnotationTrack(genome = "hg19", 
+                                                      stacking = "dense",
+                                                      strand= "*",
+                                                           col.line="black", 
+                                                      feature= (mcols(ARXMotifModels))$model,
                                                            name="Predicted TFBS")
   #ColoringTrack
-  displayPars(ARXEnhancerMotifs) <- list(`6mer` = "#e6194b", `Tandem2Spaced` = "#3cb44b", 
-                                         `Jolma` = "#0082c8", `Palindromic 4 Spaced` = "#008080")
+  displayPars(ARXEnhancerMotifs) <- list(`6mer` = "#e6194b",
+                                         `Tandem2Spaced` = "#3cb44b", 
+                                         `Jolma` = "#0082c8", 
+                                         `Palindromic 4 Spaced` = "#008080")
   
   
   assign("ARXEnhancerMotifs", ARXEnhancerMotifs, .GlobalEnv)
   assign("EnhancersHuman", EnhancersHuman, .GlobalEnv)
+  assign("arxMotifsHumanRaw", arxMotifsHumanRaw, .GlobalEnv)
   
   
-  
-  geneTracks<-import("~/DataFiles/Gene Tracks/Human/hg.bed")
+  geneTracks<-import("DataFiles/Gene Tracks/Human/hg.bed.gz")
   promoterTracks<-geneTracks%>%promoters()%>%GRanges()
   
   
-  arx6MerTFBSHg19<-readRDS("~/DataFiles/ChIPseq/Human/ARX6merHg19Sites")
+
   
   #Human HiC Data
-  interactionsHumanBrain<-readRDS(file= "~/DataFiles/HiC/Human/SignificantInteractionsBetweenEnhancersContainingARX")%>%InteractionTrack(
+  interactionsHumanBrain<-readRDS(file= "DataFiles/HiC/Human/SignificantInteractionsBetweenEnhancersContainingARX")%>%InteractionTrack(
     name= "ARX Significant Interactions")
   
-  contactProbabilities<- readRDS(file="~/DataFiles/HiC/Human/contactProbabilitiesHuman")%>%InteractionTrack(
+  contactProbabilities<- readRDS(file="DataFiles/HiC/Human/contactProbabilitiesHuman")%>%InteractionTrack(
     name= "Contact Probabilities"
   )
   
@@ -117,7 +136,7 @@ arx6MerTFBSHg19<-readRDS("~/DataFiles/ChIPseq/Human/ARX6merHg19Sites")
                                              anchor.height = 0.1)
   
   assign("promoterTracks", promoterTracks, .GlobalEnv)
-  assign("arx6MerTFBSHg19", arx6MerTFBSHg19, .GlobalEnv)
+  assign("arxMotifsHumanRaw", arxMotifsHumanRaw, .GlobalEnv)
   assign("interactionsHumanBrain", interactionsHumanBrain, .GlobalEnv)
   assign("contactProbabilities", contactProbabilities, .GlobalEnv)
 
@@ -126,7 +145,12 @@ arx6MerTFBSHg19<-readRDS("~/DataFiles/ChIPseq/Human/ARX6merHg19Sites")
   
   
   ##ChromHMM Track Generator specifically for humans
-  chromHMMTrackGenerator<-function (gen = "hg19", chr, from, to, bedFile, featureDisplay = featureDisplay, 
+  chromHMMTrackGenerator<-function (gen = "hg19",
+                                    chr, 
+                                    from, 
+                                    to,
+                                    bedFile, 
+                                    featureDisplay = featureDisplay, 
                                     colorcase = "roadmap15") 
   {
     desiredRegion <- subset(get(bedFile), end > from & 
@@ -134,8 +158,7 @@ arx6MerTFBSHg19<-readRDS("~/DataFiles/ChIPseq/Human/ARX6merHg19Sites")
     track <- AnnotationTrack(desiredRegion, 
                              stacking = "dense",
                              col.line="black",
-                             feature = 
-                               (mcols(desiredRegion))$name,
+                             feature = (mcols(desiredRegion))$name,
                              genome = "hg19",
                              strand= "*",
                              name = paste(bedFile))
@@ -186,12 +209,18 @@ arx6MerTFBSHg19<-readRDS("~/DataFiles/ChIPseq/Human/ARX6merHg19Sites")
                                                                                                     genome = "hg19")
   
   # Arx All motifs Track
-  Arx6merHumanTrack<-subset(arx6MerTFBSHg19, 
-                             seqnames==input$chrM & start > input$fromM & end< input$toM)%>%AnnotationTrack(genome = "hg19",
+  Arx6merHumanTrack<-subset(arxMotifsHumanRaw, 
+                             seqnames==input$chrM & start > input$fromM & end< input$toM)%>%AnnotationTrack(.,genome = "hg19",
                                                                                                             stacking = "dense", 
                                                                                                             col.line="black",
-                                                                                                            name="ALL ARX Motifs")
-
+                                                                                                            name="ALL ARX Motifs",
+                                                                                                            feature= (mcols(.))$Model)
+  
+  displayPars(Arx6merHumanTrack) <- list(`6mer` = "#e6194b", 
+                                         `T6mer2` = "#3cb44b", 
+                                         `Jolma` = "#0082c8", 
+                                         `P6mer4` = "#008080")
+  
 
   assign("chromHMM_RoadMapAll", chromHMM_RoadMapAll, .GlobalEnv)
   assign("Arx6merHumanTrack", Arx6merHumanTrack, .GlobalEnv)
@@ -293,13 +322,17 @@ arx6MerTFBSHg19<-readRDS("~/DataFiles/ChIPseq/Human/ARX6merHg19Sites")
                                                               seqnames==input$chrM)%>%AnnotationTrack(., name = "Enhancers",
                                                                                                       genome = "hg19")
     
-    # Arx All motifs Track
-    
-    Arx6merHumanTrack<-subset(arx6MerTFBSHg19, 
-                               seqnames==input$chrM & start > input$fromM & end< input$toM)%>%AnnotationTrack(genome = "hg19",
+    Arx6merHumanTrack<-subset(arxMotifsHumanRaw, 
+                              seqnames==input$chrM & start > input$fromM & end< input$toM)%>%AnnotationTrack(.,genome = "hg19",
                                                                                                              stacking = "dense", 
                                                                                                              col.line="black",
-                                                                                                             name="ALL ARX Motifs")
+                                                                                                             name="ALL ARX Motifs",
+                                                                                                             feature= (mcols(.))$Model)
+    displayPars(Arx6merHumanTrack) <- list(`6mer` = "#e6194b", 
+                                           `T6mer2` = "#3cb44b", 
+                                           `Jolma` = "#0082c8", 
+                                           `P6mer4` = "#008080")
+    
 
     
     
@@ -378,12 +411,19 @@ arx6MerTFBSHg19<-readRDS("~/DataFiles/ChIPseq/Human/ARX6merHg19Sites")
                                                                                                         colorcase='roadmap15' )})
         # Arx All motifs Track
         
-        Arx6merHumanTrack<-subset(arx6MerTFBSHg19, 
-                                   seqnames==input$chrM & start > input$fromM & end< input$toM)%>%AnnotationTrack(genome = "hg19",
-                                                                                                                  stacking = "dense", 
-                                                                                                                  col.line="black",
-                                                                                                                  name="ALL ARX Motifs")
-    
+        Arx6merHumanTrack<-subset(arxMotifsHumanRaw, 
+                                  seqnames==input$chrM & start > input$fromM & end< input$toM)%>%AnnotationTrack(.,genome = "hg19",
+                                                                                                                 stacking = "dense", 
+                                                                                                                 col.line="black",
+                                                                                                                 name="ALL ARX Motifs",
+                                                                                                                 feature= (mcols(.))$Model)
+        
+        displayPars(Arx6merHumanTrack) <- list(`6mer` = "#e6194b", 
+                                               `T6mer2` = "#3cb44b", 
+                                               `Jolma` = "#0082c8", 
+                                               `P6mer4` = "#008080")
+        
+        
         
         assign("chromHMM_RoadMapAll", chromHMM_RoadMapAll, .GlobalEnv)
         assign("Arx6merHumanTrack", Arx6merHumanTrack, .GlobalEnv)
@@ -432,13 +472,19 @@ arx6MerTFBSHg19<-readRDS("~/DataFiles/ChIPseq/Human/ARX6merHg19Sites")
                                                                                                colorcase='roadmap15' )})
   # Arx All motifs Track
   
-  Arx6merHumanTrack<-subset(arx6MerTFBSHg19, 
-                             seqnames==input$chrM & start > input$fromM & end< input$toM)%>%AnnotationTrack(genome = "hg19",
-                                                                                                            stacking = "dense", 
-                                                                                                            col.line="black", 
-                                                                                                            name="ALL ARX Motifs")
+  Arx6merHumanTrack<-subset(arxMotifsHumanRaw, 
+                            seqnames==input$chrM & start > input$fromM & end< input$toM)%>%AnnotationTrack(.,genome = "hg19",
+                                                                                                           stacking = "dense", 
+                                                                                                           col.line="black",
+                                                                                                           name="ALL ARX Motifs",
+                                                                                                           feature= (mcols(.))$Model)
   
- 
+  displayPars(Arx6merHumanTrack) <- list(`6mer` = "#e6194b", 
+                                         `T6mer2` = "#3cb44b", 
+                                         `Jolma` = "#0082c8", 
+                                         `P6mer4` = "#008080")
+  
+  
   
   plotTracks(trackList = c(humanIdeogramTrack,
                            gHumanTrack,
@@ -520,12 +566,12 @@ arx6MerTFBSHg19<-readRDS("~/DataFiles/ChIPseq/Human/ARX6merHg19Sites")
       #####MOUSE DATA
       ###########################################################3
       #Mouse ChromHMM inputs
-      testesMouse="~/DataFiles/ChromHMM/mouse/testes_cStates_HMM.bed"%>%import()
-      brainMouse= "~/DataFiles/ChromHMM/mouse/brain_cStates_HMM.bed"%>%import()
-      thymusMouse="~/DataFiles/ChromHMM/mouse/thymus_cStates_HMM.bed"%>%import()
-      heartMouse="~/DataFiles/ChromHMM/mouse/heart_cStates_HMM.bed"%>%import()
-      mESCMouse="~/DataFiles/ChromHMM/mouse/mESC_cStates_HMM.bed"%>%import()
-      intestineMouse="~/DataFiles/ChromHMM/mouse/intestine_cStates_HMM.bed"%>%import()
+      testesMouse="DataFiles/ChromHMM/mouse/testes_cStates_HMM.bed.gz"%>%import()
+      brainMouse= "DataFiles/ChromHMM/mouse/brain_cStates_HMM.bed.gz"%>%import()
+      thymusMouse="DataFiles/ChromHMM/mouse/thymus_cStates_HMM.bed.gz"%>%import()
+      heartMouse="DataFiles/ChromHMM/mouse/heart_cStates_HMM.bed.gz"%>%import()
+      mESCMouse="DataFiles/ChromHMM/mouse/mESC_cStates_HMM.bed.gz"%>%import()
+      intestineMouse="DataFiles/ChromHMM/mouse/intestine_cStates_HMM.bed.gz"%>%import()
       
       assign("testesMouse", testesMouse, .GlobalEnv)
       assign("brainMouse", brainMouse, .GlobalEnv)
@@ -535,9 +581,23 @@ arx6MerTFBSHg19<-readRDS("~/DataFiles/ChIPseq/Human/ARX6merHg19Sites")
       assign("intestineMouse", intestineMouse, .GlobalEnv)
       
       #Mouse Inputs
-      Arx6merMouse<-readRDS("~/DataFiles/ChIPseq/Mouse/ARX6mermm9Sites")
-      EnhancersMouse<-import("~/DataFiles/Enhancer Tracks/Mouse/mouse_permissive_enhancers_phase_1_and_2.bed")
-      geneTracksMouse<-import("~/DataFiles/Gene Tracks/Mouse/mm9.bed")
+      Arx6merMouse<-readRDS("DataFiles/ChIPseq/Mouse/ARX6mermm9Sites")
+      mcols(Arx6merMouse)<-cbind.data.frame("Model"= "6mer")
+      ArxP6mer4Mouse<-readRDS("DataFiles/ChIPseq/Mouse/Plaindromic4Spacedmm9")
+      mcols(ArxP6mer4Mouse)<-cbind.data.frame("Model"= "P6mer4")
+      ArxJolmaMouse<-readRDS("DataFiles/ChIPseq/Mouse/JolmaTFBS")
+      mcols(ArxJolmaMouse)<-cbind.data.frame("Model"= "Jolma")
+      ArxT6mer2Mouse<-readRDS("DataFiles/ChIPseq/Mouse/ARXTande2SpacedSites")
+      mcols(ArxT6mer2Mouse)<-cbind.data.frame("Model"= "T6mer2")
+      
+      
+      Arx6merMouseRaw<-c(Arx6merMouse, 
+                      ArxP6mer4Mouse,
+                      ArxT6mer2Mouse,
+                      ArxJolmaMouse)%>%unlist()
+      
+      EnhancersMouse<-import("DataFiles/Enhancers Track/Mouse/mouse_permissive_enhancers_phase_1_and_2.bed.gz")
+      geneTracksMouse<-import("DataFiles/Gene Tracks/Mouse/mm9.bed.gz")
       promoterTracksMouse<-promoters(geneTracksMouse)%>%GRanges()
       
       assign("promoterTracksMouse", promoterTracksMouse, .GlobalEnv)
@@ -546,8 +606,8 @@ arx6MerTFBSHg19<-readRDS("~/DataFiles/ChIPseq/Human/ARX6merHg19Sites")
       
       
       #Hic Data
-      contactProbabilitiesMouse<-readRDS("~/DataFiles/HiC/Mouse/contactProbabilitiesMouse")%>%InteractionTrack(name= "Contact Probabilities")
-      interactionBrainMouse<-readRDS("~/DataFiles/HiC/Mouse/mm9StasticallySignificantInteractions")%>%InteractionTrack(name = "Significant Interactions")
+      contactProbabilitiesMouse<-readRDS("DataFiles/HiC/Mouse/contactProbabilitiesMouse")%>%InteractionTrack(name= "Contact Probabilities")
+      interactionBrainMouse<-readRDS("DataFiles/HiC/Mouse/mm9StasticallySignificantInteractions")%>%InteractionTrack(name = "Significant Interactions")
       
       #Coloring the tracks
       displayPars(contactProbabilitiesMouse) = list(col.interactions="red",
@@ -572,19 +632,24 @@ arx6MerTFBSHg19<-readRDS("~/DataFiles/ChIPseq/Human/ARX6merHg19Sites")
       assign("contactProbabilitiesMouse", contactProbabilitiesMouse, .GlobalEnv)
       assign("interactionBrainMouse", interactionBrainMouse, .GlobalEnv)
       assign("promoterTracksMouse", promoterTracksMouse, .GlobalEnv)
-      assign("Arx6merMouse", Arx6merMouse, .GlobalEnv)
+      assign("Arx6merMouseRaw", Arx6merMouseRaw, .GlobalEnv)
 
       
       #Predicted Arx Motif Track!!!! 
       
-      ARXMotifModelsMouse<-readRDS("~/DataFiles/ChIPseq/Mouse/ArxPredictedTFBS")
+      ARXMotifModelsMouse<-readRDS("DataFiles/ChIPseq/Mouse/ArxPredictedTFBS")
       
-      ARXEnhancerMotifsMouse<-ARXMotifModelsMouse%>%AnnotationTrack(genome = "mm9", stacking = "dense", strand= "*",
-                                                            col.line="black", feature= (mcols(ARXMotifModelsMouse))$model,
+      ARXEnhancerMotifsMouse<-ARXMotifModelsMouse%>%AnnotationTrack(genome = "mm9", 
+                                                                    stacking = "dense", 
+                                                                    strand= "*",
+                                                            col.line="black", 
+                                                            feature= (mcols(ARXMotifModelsMouse))$model,
                                                             name="Predicted Arx TFBS")
       #ColoringTrack
-      displayPars(ARXEnhancerMotifsMouse) <- list(`6mer` = "#e6194b", `Tandem2Spaced` = "#3cb44b", 
-                                               `Jolma` = "#0082c8", `Palindromic 4 Spaced` = "#008080")
+      displayPars(ARXEnhancerMotifsMouse) <- list(`6mer` = "#e6194b", 
+                                                  `Tandem2Spaced` = "#3cb44b", 
+                                               `Jolma` = "#0082c8", 
+                                               `Palindromic 4 Spaced` = "#008080")
       
       
 
@@ -665,13 +730,24 @@ arx6MerTFBSHg19<-readRDS("~/DataFiles/ChIPseq/Human/ARX6merHg19Sites")
                                                                                                        featureDisplay = "all", 
                                                                                                        colorcase='roadmap15' )})
       
+      
+      
+      
+      ### Raw Motif Traack
 
-      Arx6merMouseTrack<-subset(Arx6merMouse, seqnames==input$chrM & start > input$fromM & end< input$toM)%>%
-        AnnotationTrack(genome = "mm9", 
+      Arx6merMouseTrack<-subset(Arx6merMouseRaw, seqnames==input$chrM & start > input$fromM & end< input$toM)%>%
+        AnnotationTrack(.,genome = "mm9", 
                         stacking = "dense",
                         strand= "*",
-                        name= "All 6mer Motifs")
-
+                        name= "All Motifs",
+                        feature= (mcols(.))$Model)
+      
+      
+      
+      displayPars(Arx6merMouseTrack) <- list(`6mer` = "#e6194b", 
+                                             `T6mer2` = "#3cb44b", 
+                                             `Jolma` = "#0082c8", 
+                                             `P6mer4` = "#008080")
       
       
       
@@ -776,11 +852,23 @@ arx6MerTFBSHg19<-readRDS("~/DataFiles/ChIPseq/Human/ARX6merHg19Sites")
                                                                                                     featureDisplay = "all", 
                                                                                                     colorcase='roadmap15' )})
       
-      Arx6merMouseTrack<-subset(Arx6merMouse, seqnames==input$chrM & start > input$fromM & end< input$toM)%>%
-        AnnotationTrack(genome = "mm9", 
+      Arx6merMouseTrack<-subset(Arx6merMouseRaw, seqnames==input$chrM & start > input$fromM & end< input$toM)%>%
+        AnnotationTrack(.,genome = "mm9", 
                         stacking = "dense",
                         strand= "*",
-                        name= "All 6mer Motifs")
+                        name= "All Motifs",
+                        feature= (mcols(.))$Model)
+      
+      
+      
+      displayPars(Arx6merMouseTrack) <- list(`6mer` = "#e6194b", 
+                                             `T6mer2` = "#3cb44b", 
+                                             `Jolma` = "#0082c8",
+                                             `P6mer4` = "#008080")
+      
+      
+      
+      
       
       assign( "chromHMM_RoadMapAllMouse",chromHMM_RoadMapAllMouse, .GlobalEnv)
       assign( "Arx6merMouseTrack",Arx6merMouseTrack, .GlobalEnv)
@@ -862,13 +950,21 @@ arx6MerTFBSHg19<-readRDS("~/DataFiles/ChIPseq/Human/ARX6merHg19Sites")
                                                                                                       featureDisplay = "all", 
                                                                                                       colorcase='roadmap15' )})
         
-        Arx6merMouseTrack<-subset(Arx6merMouse, seqnames==input$chrM & start > input$fromM & end< input$toM)%>%
-          AnnotationTrack(genome = "mm9", 
+        Arx6merMouseTrack<-subset(Arx6merMouseRaw, seqnames==input$chrM & start > input$fromM & end< input$toM)%>%
+          AnnotationTrack(.,genome = "mm9", 
                           stacking = "dense",
                           strand= "*",
-                          name= "All 6mer Motifs")
-        
-        
+                          name= "All Motifs",
+                          feature= (mcols(.))$Model)
+
+
+
+displayPars(Arx6merMouseTrack) <- list(`6mer` = "#e6194b", 
+                                       `T6mer2` = "#3cb44b", 
+                                       `Jolma` = "#0082c8", 
+                                       `P6mer4` = "#008080")
+
+
         assign( "chromHMM_RoadMapAllMouse",chromHMM_RoadMapAllMouse, .GlobalEnv)
         assign( "Arx6merMouseTrack",Arx6merMouseTrack, .GlobalEnv)
         assign("promotertrackChromosomeSpecificMouse", promotertrackChromosomeSpecificMouse , .GlobalEnv)
@@ -917,11 +1013,19 @@ arx6MerTFBSHg19<-readRDS("~/DataFiles/ChIPseq/Human/ARX6merHg19Sites")
                                                                                                       colorcase='roadmap15' )})
         
         
-        Arx6merMouseTrack<-subset(Arx6merMouse, seqnames==input$chrM & start > input$fromM & end< input$toM)%>%
-          AnnotationTrack(genome = "mm9", 
+        Arx6merMouseTrack<-subset(Arx6merMouseRaw, seqnames==input$chrM & start > input$fromM & end< input$toM)%>%
+          AnnotationTrack(.,genome = "mm9", 
                           stacking = "dense",
                           strand= "*",
-                          name= "All 6mer Motifs")
+                          name= "All Motifs",
+                          feature= (mcols(.))$Model)
+
+
+
+displayPars(Arx6merMouseTrack) <- list(`6mer` = "#e6194b",
+                                       `T6mer2` = "#3cb44b", 
+                                       `Jolma` = "#0082c8", 
+                                       `P6mer4` = "#008080")
         
         assign( "chromHMM_RoadMapAllMouse",chromHMM_RoadMapAllMouse, .GlobalEnv)
         assign( "Arx6merMouseTrack",Arx6merMouseTrack, .GlobalEnv)
