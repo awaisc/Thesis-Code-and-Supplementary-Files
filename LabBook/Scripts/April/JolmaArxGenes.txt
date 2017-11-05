@@ -1,0 +1,347 @@
+[[1]]
+                     Gene.symbol
+1                           Rpn1
+2                          Gm973
+3        Shroom3 / 4932413O14Rik
+4                         Polr3e
+5                        C130074
+6  Scye1 = Aimp1 / A630047E20Rik
+7                        Tcp11l2
+8                          Derl3
+9                        Galnt14
+10                       Tmem90a
+11                          Nxt2
+12                         Stox2
+13                          Tcl1
+14                        Ptger4
+15                       Dmrtc1a
+16                         Sfrs1
+17                         Foxa1
+18                        Gm1673
+19                       Slc6a20
+20                        Prss12
+21                         Fcamr
+22                 Cdx1 / Pdgfrb
+23                        Ormdl3
+24                           Id2
+25             NM_145562 = Parm1
+26                   Zic5 / Zic2
+27                          Jph4
+28                 Il8rb = Cxcr2
+29                           Eda
+30                          Fosb
+31           NM_178728 = Napepld
+32                        Chtf18
+33                        Zfp358
+34                Titf1 = Nkx2.1
+
+[[2]]
+                  Gene.symbol
+1                      Ubqln4
+6                        Rcl1
+9                        Cdh2
+10                      Neil1
+11                      Ccrl2
+12                      Pias1
+13                    Pkhd1l1
+16                      Stam2
+21                     Kctd19
+22        NM_175032 = GALNTL6
+23                     Nfe2l3
+29                       Pkp4
+30                     Lrrc8d
+33                       Cybb
+37                      Fhad1
+40                   Slc16a10
+41                      Zfp75
+43                      Ttc32
+44                      Ddit4
+45                        Cfh
+47                       Spic
+54                      Nr4a2
+57                    Cyp2b10
+58               Cxxc4 = Idax
+65                        Mro
+74     BC048191 = MEG3 = Gtl2
+76               Dmp1 = Dmtf1
+78         ENSMUST00000083599
+84                     Trdmt1
+85         ENSMUST00000077786
+88       NM_178899 = Hepacam2
+89       Btg4 / 4833427G06Rik
+90                      Rragb
+93              Ubxd2 = Ubxn4
+94                     V1rd20
+96                     Prl5a1
+97          Cenpc1 / AI586015
+99          NM_206870 = Ifna1
+107                   Ccdc28a
+109                   Pcdhgc4
+110                 NM_175675
+114                      Polk
+115                      Gab3
+118                     P2rx7
+121                     Snx15
+125                   Cyp2c66
+126                     Dppa3
+133         NM_030560 = Cwc22
+134           Ankrd47 = Kank3
+136        ENSMUST00000047115
+137         NM_178446 = Rbm47
+138                 NM_183287
+139             Gpr23 = LPAR4
+140                      Nid2
+141                    Defb50
+142                     Ptpn4
+145                     Ifnb1
+147                   Khdrbs2
+155                     Rab5a
+159                      Lsm5
+160                      Rtp2
+163                   Slc43a3
+164                   Pcdhb10
+165                    Plscr2
+166                      Tph1
+167                     Calcr
+168                     Fgf20
+170                   Lbxcor1
+171                     C1ql3
+176                  BC089626
+181                    V1rc19
+182                      Dnm2
+183          BC087547 = Reps1
+184                    Defb29
+185           D3Ucla1 = Serp1
+188        ENSMUST00000054860
+189                   Ankrd22
+191                     Kcne3
+209   E130009J12Rik = Tmem232
+210                     Tpbpb
+215                    Ranbp3
+220                   Slc47a1
+227                    Sema3g
+229                 NM_026327
+231                      Oxr1
+234            Arl6ip2 = Atl2
+235                    Ankrd7
+236                      Ets2
+237                     Casd1
+238                    Zdhhc9
+239                 NM_133818
+244                     Gm784
+247                  Itgb1bp1
+248                     Ifna9
+249                       Pzp
+250                   Ppfibp2
+251                      Musk
+252                    Mbd3l2
+256                     Pot1a
+258                      Iqub
+260                     Wasf1
+272                      Usp8
+275                       Rpe
+280                      Zpbp
+283           Ccdc32 / Rpusd2
+288                      Chga
+289                      Srpx
+298                  Als2cr12
+304                    Tmem35
+305                      Gbp6
+310                   Ppp1r3a
+314                  Tas2r125
+316                      Esx1
+319                    Pou4f2
+320              Oosp1 / Gm97
+321                     Spag9
+322            Tmem16d = Ano4
+328                   Eif2ak3
+333                 NM_172652
+337        NM_172524 = Nipal4
+340                    Rab39b
+341                       Fap
+343             Mark3 = Par1a
+346                   Arhgap5
+349                      Brs3
+351                     Ptch1
+352                     Kctd5
+357                     Postn
+358                     Ndnl2
+362                    Fbxo40
+364                     Gpr37
+367                       Me3
+369                     Mlxip
+376                      Igf1
+377                    Sfrs12
+380                    V1rc20
+383                     Stag3
+384                       Fgr
+386                       Afp
+388                      Zim1
+390                    Cggbp1
+391                     Slit2
+394 C230097 = Zscan30 / Zfp35
+395                    Klhl22
+399                    Sucnr1
+405              NM_001004187
+410                     Dip2b
+414                      Sdc4
+416                     Klrc1
+420                   Il18rap
+421         Cacna2d1 = Cacna2
+423                     Olfm3
+425                 NM_175521
+428                      Htr7
+429                   Mett5d1
+433                     Phf19
+437                     Prmt6
+440                     Rbbp5
+441                     Rbm26
+444        ENSMUST00000061823
+446                   Mterfd1
+452                    Spock3
+457                    Ugt2a2
+458                  BC099546
+459        ENSMUST00000098496
+461                      Alg2
+469                  Rasgef1b
+470                    Tmem67
+473                    Pcdhb5
+478                     Pparg
+479         A830043 = Fam124b
+480        ENSMUST00000093596
+486                      Rffl
+487                      Car3
+488                     Hmgn3
+489                     Phkg2
+494                      Enc1
+498                     v1ri1
+499                 NM_134054
+500                     Tpbpa
+505                    Dbndd2
+506                   Spata16
+508                   Atp13a4
+511                       Lpp
+512                     Cox17
+518                    Cox7b2
+519                     Mycbp
+523                  BC051224
+524                    Olfml3
+526                      Pax1
+533                    Clec1b
+538                      Cst7
+541                     Parp8
+546                      Heph
+547                      Hao1
+548                      Pfn2
+555                     Vps4b
+556                     Fnip1
+557                 NM_027603
+561                     Unc5d
+564                    Cxcl11
+567                       Otp
+568                     Cst13
+573                   Dcun1d1
+574          NM_145511 = Odr4
+575                   Wbscr27
+576                     Usp47
+580                    Tspyl1
+583                      Tmc7
+585                 Hist1h2bc
+588                      Uaca
+591                     Fert2
+592                   Ugt2b37
+601                 NM_178243
+603                     Zfpm2
+604                    Csn1s1
+605                     Cadm3
+607                     Manea
+609                   Tnfsf18
+611                    Lrrc18
+616                      Psd3
+617                   Naalad2
+622                     Accn5
+
+[[3]]
+              Gene.symbol
+1                 Cyp26b1
+2                    Prph
+3                   Pcgf3
+4        NM_029768 = Use1
+5                  Bhlhb5
+6                  Arid1a
+7      NM_177849 = Efcab8
+8                  Prkrir
+9                    Wfs1
+10                   Vat1
+11                  Palm2
+12                 Cyp1b1
+13                Tcp11l2
+14                  Rexo1
+15                   Brd2
+16                  Itm2c
+17              Serpinb9c
+18                  Cnnm3
+19                 Gabrb3
+20                 Ppp3cc
+21                Zc3h12d
+22                  Cxcr7
+23 NM_001082975 = Sdr39u1
+24          Arntl = Bmal1
+25                  Gria3
+26                  Dmrt3
+27                 Mtrf1l
+28                    Ace
+29                   Cnn2
+30                   Mcm4
+31                Tspan32
+32              Slc25a10 
+33               Tas2r113
+34                  Tpd52
+35                 Sema3c
+36                  Usp53
+37                Dmrtc1a
+38                   Tle1
+39                D630039
+40                  Mllt1
+41                  Frem2
+42                 Thnsl2
+43                  Mtap4
+44                  Foxa1
+45              NM_026362
+46  Cd274 / 5033414D02Rik
+47   NM_001003949 = Orf61
+48      NM_172635 = Patl1
+49                Slc6a20
+50                  Gm996
+51                 Prss12
+52      NM_029654 = Atg2b
+53                   Gnb2
+54                  Fcamr
+55                Ccdc106
+56                 Hspa4l
+57                Tmem154
+58                Slc26a1
+59                  Tmco4
+60                 Klhl15
+61      NM_145562 = Parm1
+62                   Ralb
+63                  Tmcc2
+64                  Pde6b
+65                   Fut7
+66                   Fgf4
+67            Zic5 / Zic2
+68                   Odz4
+69                   Cbx3
+70           Alkbh2 / Ung
+71              NM_183249
+72                  Lce1e
+73                  Fxyd6
+74                   Gjb2
+75  NM_001038697 = Gm5635
+76                 Pmaip1
+77                 Gucy2c
+78        Tspan7 = Tm4sf2
+79                   Gnl2
+80               Epb4.1l1
+81                    C8b
+

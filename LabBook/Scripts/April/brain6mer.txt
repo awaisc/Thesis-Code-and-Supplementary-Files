@@ -1,0 +1,56 @@
+             Gene.symbol
+1                Cyp26b1
+2                  Pcgf3
+3                 Arid1a
+4     NM_177849 = Efcab8
+5                  Rexo1
+6                  Itm2c
+7              Serpinb9c
+8                 Gabrb3
+9                 Ppp3cc
+10                 Gnai1
+11               Zc3h12d
+12                 Cxcr7
+13                 Gria3
+14                  Cnn2
+15    NM_026437 = Fam45A
+16               Tspan32
+17                  Gpd1
+18             Slc25a10 
+19                Siah1b
+20              Tas2r113
+21                 Tpd52
+22                Sema3c
+23                 Usp53
+24                  Tle1
+25                Atrnl1
+26                 Cd177
+27 Cd274 / 5033414D02Rik
+28  NM_001003949 = Orf61
+29     NM_172635 = Patl1
+30                Rab3ip
+31               Slc6a20
+32                 Cxxc5
+33                 Gm996
+34             NM_175682
+35                 Fcamr
+36             NM_174997
+37               Tmem154
+38               Slc26a1
+39                 Tmco4
+40     NM_145562 = Parm1
+41                  Ralb
+42                 Tmcc2
+43                 Pde6b
+44                  Fut7
+45                   Ttk
+46                  Fgf4
+47                  Cbx3
+48               Cox7a2l
+49                 Lce1e
+50          Edg8 = S1pr5
+51 NM_001038697 = Gm5635
+52                 Abca5
+53       Tspan7 = Tm4sf2
+54                  Gnl2
+55                   C8b

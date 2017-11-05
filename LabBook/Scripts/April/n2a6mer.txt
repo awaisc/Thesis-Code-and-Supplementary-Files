@@ -1,0 +1,158 @@
+                  Gene.symbol
+1                      Ubqln4
+9                        Cdh2
+10                      Neil1
+11                      Ccrl2
+12                      Pias1
+13                    Pkhd1l1
+17                       Fa2h
+18                  NM_028732
+19                      Gnao1
+21                     Kctd19
+23                     Nfe2l3
+29                       Pkp4
+34          NM_023831 = IFT46
+37                      Fhad1
+41                      Zfp75
+43                      Ttc32
+47                       Spic
+51                       Aox4
+57                    Cyp2b10
+58               Cxxc4 = Idax
+63             A230106 = Ses1
+72                      Peg10
+82                Saa1 / Saa2
+84                     Trdmt1
+88       NM_178899 = Hepacam2
+92                      Itgav
+94                     V1rd20
+97          Cenpc1 / AI586015
+103                 Serpina10
+114                      Polk
+115                      Gab3
+118                     P2rx7
+121                     Snx15
+122                     Cpeb1
+126                     Dppa3
+133         NM_030560 = Cwc22
+134           Ankrd47 = Kank3
+136        ENSMUST00000047115
+137         NM_178446 = Rbm47
+138                 NM_183287
+140                      Nid2
+141                    Defb50
+144                    Pou4f3
+146                   Htatip2
+147                   Khdrbs2
+153       NM_025921 = Chmp1b2
+155                     Rab5a
+161             Pctk2 = Cdk17
+163                   Slc43a3
+165                    Plscr2
+167                     Calcr
+168                     Fgf20
+180                    Rps27l
+181                    V1rc19
+183          BC087547 = Reps1
+184                    Defb29
+188        ENSMUST00000054860
+191                     Kcne3
+197                   Pcdhac2
+209   E130009J12Rik = Tmem232
+210                     Tpbpb
+215                    Ranbp3
+220                   Slc47a1
+227                    Sema3g
+231                      Oxr1
+237                     Casd1
+238                    Zdhhc9
+239                 NM_133818
+246                     Lmo4 
+247                  Itgb1bp1
+248                     Ifna9
+251                      Musk
+252                    Mbd3l2
+258                      Iqub
+267                    Mesdc2
+278                  Krtap6-2
+280                      Zpbp
+283           Ccdc32 / Rpusd2
+288                      Chga
+289                      Srpx
+298                  Als2cr12
+301                      Nox4
+304                    Tmem35
+305                      Gbp6
+323                     Ednra
+328                   Eif2ak3
+332                     Chrng
+341                       Fap
+343             Mark3 = Par1a
+344                     Mnat1
+345                    Txndc3
+346                   Arhgap5
+358                     Ndnl2
+360                    Slc8a1
+367                       Me3
+376                      Igf1
+377                    Sfrs12
+380                    V1rc20
+383                     Stag3
+384                       Fgr
+387                    Zfp516
+388                      Zim1
+390                    Cggbp1
+392            Phtf2 / Tmem60
+394 C230097 = Zscan30 / Zfp35
+395                    Klhl22
+399                    Sucnr1
+405              NM_001004187
+414                      Sdc4
+419                    Pla2g7
+421         Cacna2d1 = Cacna2
+423                     Olfm3
+428                      Htr7
+440                     Rbbp5
+444        ENSMUST00000061823
+454              NM_001081963
+457                    Ugt2a2
+458                  BC099546
+461                      Alg2
+470                    Tmem67
+479         A830043 = Fam124b
+480        ENSMUST00000093596
+486                      Rffl
+489                     Phkg2
+494                      Enc1
+498                     v1ri1
+500                     Tpbpa
+505                    Dbndd2
+511                       Lpp
+512                     Cox17
+516       D0HXS9928E = Fam50a
+518                    Cox7b2
+524                    Olfml3
+526                      Pax1
+529                    Adora3
+533                    Clec1b
+538                      Cst7
+539                      Hsf2
+543        ENSMUST00000041998
+557                 NM_027603
+568                     Cst13
+575                   Wbscr27
+576                     Usp47
+583                      Tmc7
+584                    Prl8a6
+585                 Hist1h2bc
+588                      Uaca
+592                   Ugt2b37
+597              NM_001024721
+601                 NM_178243
+604                    Csn1s1
+609                   Tnfsf18
+611                    Lrrc18
+612                    Snapap
+615                    Clec9a
+616                      Psd3
+617                   Naalad2
