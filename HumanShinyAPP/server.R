@@ -108,7 +108,7 @@ if(!exists("chrM")){
 
   
   #Human HiC Data
-  interactionsHumanBrain<-readRDS(file= "DataFiles/HiC/Human/SignificantInteractionsBetweenEnhancersContainingARX")%>%InteractionTrack(
+  interactionsHumanBrain<-readRDS(file= "DataFiles/HiC/Human/StasticallySignificantHg19BetweenPromoterEnhancer")%>%InteractionTrack(
     name= "ARX Significant Interactions")
   
   contactProbabilities<- readRDS(file="DataFiles/HiC/Human/contactProbabilitiesHuman")%>%InteractionTrack(
@@ -509,7 +509,7 @@ if(!exists("chrM")){
              col = NULL, 
              fontcolor.title = "black")
   }
-    },height = 850,width =  1600)
+    })
   
   
   
@@ -1057,7 +1057,7 @@ displayPars(Arx6merMouseTrack) <- list(`6mer` = "#e6194b",
                    col = NULL, 
                    fontcolor.title = "black")
       }
-  },height = 850,width =  1600)
+  })
   
   
   output$LegendsPlot<- renderImage({
